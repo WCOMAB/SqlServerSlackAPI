@@ -1,0 +1,23 @@
+//Disable documentation warning for external code
+#pragma warning disable 1591
+#pragma warning disable 1587
+<#
+    // Whenever this file is saved the files in the Includes section is downloaded
+    // from GitHub (you can download from other websources by changing rootpath)
+    RootPath    = @"https://raw.github.com/";
+    Namespace   = "SqlServerSlackAPI"         ;   // The downloaded content is wrapped in this namespace
+    Includes    = new []
+        {
+            // Lit JSON
+            Include (@"WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonData.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonException.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonMapper.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonReader.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonWriter.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/Lexer.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/ParserToken.cs")
+        };
+#>
+<#@ include file="$(SolutionDir)\packages\T4Include.1.1.4\T4\IncludeWebFile.ttinclude" #>
