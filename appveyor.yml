@@ -1,0 +1,23 @@
+version: 1.0.{build}
+environment:
+  MYGET_SOURCE: https://www.myget.org/F/wcomab/
+  MYGET_API_KEY:
+    secure: MhkWny3UKd/FHtng/5lG59kxFgTW2YlKqVHYmshtYhteHXKymc92mK9mmPsrR6Yt
+  SLACK_TOKEN:
+    secure: uUlqYrJjlKpB0gfgUVR9NthjJi5bIt5je0h5UTq2uOuv0IoejZLmYsSvNYHw7ggy
+build:
+  verbosity: minimal
+notifications:
+- provider: Slack
+  channel: appveyor
+  auth_token:
+    secure: uUlqYrJjlKpB0gfgUVR9NthjJi5bIt5je0h5UTq2uOuv0IoejZLmYsSvNYHw7ggy
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
+# Build script
+build_script:
+  - ps: .\build.ps1
+
+# Tests
+test: off
