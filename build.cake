@@ -64,11 +64,24 @@ Task("Build")
     foreach(var solution in solutions)
     {
         Information("Building {0}", solution);
-        MSBuild(solution, settings => 
+        MSBuild(solution, settings =>
             settings.SetPlatformTarget(PlatformTarget.MSIL)
                 .WithProperty("TreatWarningsAsErrors","true")
                 .WithTarget("Build")
                 .SetConfiguration(configuration));
+
+        var solutionDir = solution​.GetDirectory();
+        var assemblies =GetFiles(string.Format(
+                "{0}/**/bin/{1}/*.dll",
+                solutionDir,
+                configuration));
+        Sign(
+            assemblies,
+            new SignToolSignSettings {
+                TimeStampUri = new Uri("http://timestamp.digicert.com"),
+                CertPath = "./src/SqlServerSlackAPI/SqlServerSlackAPI.pfx",
+                Password = "SqlServerSlackAPI"
+            });
     }
 });
 

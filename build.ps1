@@ -21,7 +21,7 @@ if (!(Test-Path $NUGET_EXE)) {
     $NUGET_EXE_IN_PATH = &where.exe nuget.exe
     if ($NUGET_EXE_IN_PATH -ne $null -and (Test-Path $NUGET_EXE_IN_PATH)) {
         "Found $($NUGET_EXE_IN_PATH)"
-        $NUGET_EXE = $NUGET_EXE_IN_PATH 
+        $NUGET_EXE = $NUGET_EXE_IN_PATH
     }
 }
 
@@ -50,7 +50,7 @@ if (Test-Path $PACKAGES_CONFIG)
 # Install just Cake if missing config
 else
 {
-    Invoke-Expression "&`"$NUGET_EXE`" install Cake -ExcludeVersion"
+    Invoke-Expression "&`"$NUGET_EXE`" install Cake -ExcludeVersion -Version 0.2.2"
 }
 Pop-Location
 if ($LASTEXITCODE -ne 0)
