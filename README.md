@@ -4,6 +4,7 @@ SqlServerSlackAPI is a SQL Server CLR assembly for direct communication with Sla
 
 ![Slack message from SQL Server](https://raw.githubusercontent.com/WCOMAB/SqlServerSlackAPI/master/images/sql2slack.png)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/73tb29x0ii0amrru?svg=true)](https://ci.appveyor.com/project/WCOMAB/sqlserverslackapi)
 
 ## Usage
 
@@ -41,7 +42,7 @@ SELECT Ok,
 
 | Name        | Type            | Description                                               |
 |-------------|-----------------|-----------------------------------------------------------|
-| `Ok`        | bit             | Indicating success/failure, see `Error` for error details |                               
+| `Ok`        | bit             | Indicating success/failure, see `Error` for error details |
 | `Channel`   | nvarchar(_max_) | Encoded channel ID                                        |
 | `TimeStamp` | nvarchar(_max_) | Timestamp of the message                                  |
 | `Error`     | nvarchar(_max_) | Error message on failure                                  |
