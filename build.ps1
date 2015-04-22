@@ -50,7 +50,7 @@ if (Test-Path $PACKAGES_CONFIG)
 # Install just Cake if missing config
 else
 {
-    Invoke-Expression "&`"$NUGET_EXE`" install Cake -ExcludeVersion -Version 0.2.2"
+    Invoke-Expression "&`"$NUGET_EXE`" install Cake -PreRelease -ExcludeVersion -Source `"https://www.myget.org/F/cake/api/v2`""
 }
 Pop-Location
 if ($LASTEXITCODE -ne 0)

@@ -69,7 +69,18 @@ Task("Build")
                 .WithProperty("TreatWarningsAsErrors","true")
                 .WithTarget("Build")
                 .SetConfiguration(configuration));
+    }
+});
 
+Task("Sign")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Restore")
+    .IsDependentOn("Build")
+    .Does(() =>
+{
+    // Build all solutions.
+    foreach(var solution in solutions)
+    {
         var solutionDir = solution​.GetDirectory();
         var assemblies =GetFiles(string.Format(
                 "{0}/**/bin/{1}/*.dll",
@@ -86,7 +97,7 @@ Task("Build")
 });
 
 Task("Default")
-    .IsDependentOn("Build");
+    .IsDependentOn("Sign");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTION
