@@ -9,15 +9,15 @@ build:
   verbosity: minimal
 notifications:
 - provider: Slack
-  channel: appveyor
-  auth_token:
-    secure: uUlqYrJjlKpB0gfgUVR9NthjJi5bIt5je0h5UTq2uOuv0IoejZLmYsSvNYHw7ggy
+  incoming_webhook:
+    secure: se4ZgrGbFvolFWVA2tiWmNgJnnQpGGjExtCofl61u8mjPomk+wiDwkjaNOaltImU8TpfXtMr0PEuNjLmzr/d3fW4HQbBr6vwPAxn5L4elmI=
+  channel: '#appveyor'
   on_build_success: true
   on_build_failure: true
   on_build_status_changed: true
 # Build script
 build_script:
-  - ps: .\build.ps1
+  - ps: .\build.ps1 -Target AppVeyor
 
 # Tests
 test: off
