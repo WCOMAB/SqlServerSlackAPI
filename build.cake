@@ -16,13 +16,13 @@ var solutionDirs    = solutions.Select(solution => solution.GetDirectory());
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
 
-Setup(() =>
+Setup(context =>
 {
     // Executed BEFORE the first task.
     Information("Running tasks...");
 });
 
-Teardown(() =>
+Teardown(context =>
 {
     // Executed AFTER the last task.
     Information("Finished running tasks.");
@@ -66,6 +66,7 @@ Task("Build")
         Information("Building {0}", solution);
         MSBuild(solution, settings =>
             settings.SetPlatformTarget(PlatformTarget.MSIL)
+                .UseToolVersion(MSBuildToolVersion.VS2015)
                 .WithProperty("TreatWarningsAsErrors","true")
                 .WithTarget("Build")
                 .SetConfiguration(configuration));
@@ -90,7 +91,7 @@ Task("Sign")
             assemblies,
             new SignToolSignSettings {
                 TimeStampUri = new Uri("http://timestamp.digicert.com"),
-                CertPath = "./src/SqlServerSlackAPI/SqlServerSlackAPI.pfx",
+                CertPath = MakeAbsolute(File("./src/SqlServerSlackAPI/SqlServerSlackAPI.pfx")),
                 Password = "SqlServerSlackAPI"
             });
     }
